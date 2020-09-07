@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,8 +18,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
-Route::group(array('before' => 'auth.basic'), function()
+
+Route::group(array('middleware' => 'auth'), function()
 {
     // all your routes placed in here will be protected by auth.basic
     Route::get('/home', 'HomeController@index')->name('home');
@@ -28,9 +29,13 @@ Route::get('/contact', 'HomePageController@contact');
 Route::get('/main', 'HomePageController@main');
 Route::post('/mail', 'HomePageController@mail');
 });
+
+//Routes without auth goes here
+
 // Route::get('/home', 'HomeController@index')->name('home');
 // Route::get('/home_page', 'HomePageController@index');
 // Route::post('/update', 'HomePageController@update');
 // Route::get('/contact', 'HomePageController@contact');
 // Route::get('/main', 'HomePageController@main');
 // Route::post('/mail', 'HomePageController@mail');
+Auth::routes();

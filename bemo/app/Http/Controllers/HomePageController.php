@@ -5,12 +5,12 @@ use App\Mail\ContactFormMail;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
 use App\HomePage;
+
 class HomePageController extends Controller
 {
     public function index()
     {
-        $data = HomePage::first();
-        //dd($data);
+        $data = HomePage::first(); 
         return view('home_page.index', compact('data'));
     }
     public function update(Request $request, HomePage $data)
@@ -51,21 +51,10 @@ class HomePageController extends Controller
             'google_analytics' => $data->google_analytics,
             'facebook_pixel' => $data->facebook_pixel
             ]);
-       //HomePage::table('home_page_table')->where('id', $data->id)->update();
-        // $data = HomePage::table('home_page_table')
-        //         ->where('id', $data->id)
-        //        ->update(['title' =>$data->title]);
-        //dd($data);
+
         return view('home_page.index',compact('data'));
-        //return redirect('home_page', compact('data'));
+
     }
-
-    // public function fetch()
-    // {
-    //     $data = HomePage::first();
-    //     return json_encode($data);
-    // }
-
     public  function main()
     {
         $data = HomePage::first();

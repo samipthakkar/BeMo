@@ -34,9 +34,9 @@
 
 	<div id="container">
 	<img src="images/{{$data->image}}" id="hero_image">
-	<div class="centered">CDA Interview Guide</div>	
+	<div class="centered">{{$data->image_text}}</div>	
 	</div>
-	<h4>{{$data->title}}</h4>
+	<h4>{!!$data->title!!}</h4>
 
 	<h3>Overview:</h3>
 	<p>The purpose of the dental school interview<br>
@@ -53,7 +53,7 @@
 
 	<h3>{{$data->header_1}}</h3>
 	<p>
-		{{{$data->para_1}}}
+		{!!$data->para_1!!}
 	</p>
 	<p>
 		What are NCSs? By these we mean the following: Communication skills, interpersonal skills, ethical and moral decision making capacity, maturity, professionalism, sense of social responsibility, service to community, leadership, initiative, scholarship, ability to collaborate with others, conflict resolution skills, etc.

@@ -1,20 +1,18 @@
 @extends('layouts.app')
+@section('head_data')
+<script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
 
+@endsection
 @section('content')
-
-<head>
-  
-</head>
 
 
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header">{{ __('Home Page Configuration') }}</div>
 
                 <div class="card-body">
-                    <!-- {{$data}} -->
                     <form method="POST" action="/update">
                         @csrf
                         <div class="form-group row">
@@ -22,12 +20,6 @@
 
                             <div class="col-md-6">
                                 <input id="logo" type="text" class="form-control @error('email') is-invalid @enderror" name="logo" value="{{ $data->logo }}" required autocomplete="email" autofocus>
-
-                                <!-- @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror -->
                             </div>
                         </div>
 
@@ -36,12 +28,6 @@
 
                             <div class="col-md-6">
                                 <input id="image" type="text" class="form-control @error('password') is-invalid @enderror" name="image" value = "{{ $data->image }}"required autocomplete="current-password">
-
-                                <!-- @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror -->
                             </div>
                         </div>
 
@@ -49,7 +35,7 @@
                             <label for="image_text" class="col-md-4 col-form-label text-md-right">{{ __('Image Text') }}</label>
 
                             <div class="col-md-6">
-                                <input id="image_text" type="text" class="form-control @error('email') is-invalid @enderror" name="image_text" value="{{ $data->image_text }}" required autocomplete="email" autofocus>
+                                <input id="image_text" type="text" class="form-control @error('email') is-invalid @enderror" name="image_text" value="{{ $data->image_text }}"  autocomplete="email" autofocus>
 
                             </div>
                         </div>
@@ -57,16 +43,33 @@
                             <label for="title" class="col-md-4 col-form-label text-md-right">{{ __('Title') }}</label>
 
                             <div class="col-md-6">
-                                <input id="title" type="text" class="form-control @error('email') is-invalid @enderror" name="title" value="{{ $data->title }}" required autocomplete="email" autofocus>
-
+                                <textarea id=title class="form-control @error('email') is-invalid @enderror" name="title">{{ $data->title }}</textarea>
+                                <script> 
+                                CKEDITOR.replace( 'title', {
+                                toolbarGroups: [{
+                                        
+                                        "name": "basicstyles",
+                                        "groups": ["basicstyles"]
+                                        },
+                                        {
+                                        "name": "document",
+                                        "groups": ["mode"]
+                                        }
+                                    ],
+                                    // Remove the redundant buttons from toolbar groups defined above.
+                                    removeButtons: 'Subscript,Superscript,Anchor,Styles,Specialchar'
+                                    });
+                                    
+                                </script>
                             </div>
                         </div>
+
 
                         <div class="form-group row">
                             <label for="header_1" class="col-md-4 col-form-label text-md-right">{{ __('Header 1') }}</label>
 
                             <div class="col-md-6">
-                                <input id="header_1" type="text" class="form-control @error('email') is-invalid @enderror" name="header_1" value="{{ $data->header_1 }}" required autocomplete="email" autofocus>
+                                <input id="header_1" type="text" class="form-control @error('email') is-invalid @enderror" name="header_1" value="{{ $data->header_1 }}"  autocomplete="email" autofocus>
 
                             </div>
                         </div>
@@ -75,8 +78,24 @@
                             <label for="para_1" class="col-md-4 col-form-label text-md-right">{{ __('Paragraph 1') }}</label>
 
                             <div class="col-md-6">
-                                <textarea id="para_1" type="textarea" class="form-control @error('email') is-invalid @enderror" name="para_1" value="" required autocomplete="email" autofocus>{{ $data->para_1 }}</textarea>
-
+                                <textarea id="para_1" type="textarea" class="form-control @error('email') is-invalid @enderror" name="para_1" value=""  autocomplete="email" autofocus>{{ $data->para_1 }}</textarea>
+                                <script> 
+                                CKEDITOR.replace( 'para_1', {
+                                toolbarGroups: [{
+                                        
+                                        "name": "basicstyles",
+                                        "groups": ["basicstyles"]
+                                        },
+                                        {
+                                        "name": "document",
+                                        "groups": ["mode"]
+                                        }
+                                    ],
+                                    // Remove the redundant buttons from toolbar groups defined above.
+                                    removeButtons: 'Subscript,Superscript,Anchor,Styles,Specialchar'
+                                    });
+                                    
+                                </script>
                             </div>
                         </div>
 
@@ -84,7 +103,7 @@
                             <label for="header_2" class="col-md-4 col-form-label text-md-right">{{ __('Header 2') }}</label>
 
                             <div class="col-md-6">
-                                <input id="header_2" type="text" class="form-control @error('email') is-invalid @enderror" name="header_2" value="{{ $data->header_2 }}" required autocomplete="email" autofocus>
+                                <input id="header_2" type="text" class="form-control @error('email') is-invalid @enderror" name="header_2" value="{{ $data->header_2 }}"  autocomplete="email" autofocus>
 
                             </div>
                         </div>
@@ -93,7 +112,7 @@
                             <label for="para_2" class="col-md-4 col-form-label text-md-right">{{ __('Paragraph 2') }}</label>
 
                             <div class="col-md-6">
-                                <textarea id="para_2" type="textarea" class="form-control @error('email') is-invalid @enderror" name="para_2" value="" required autocomplete="email" autofocus>{{ $data->para_2 }}</textarea>
+                                <textarea id="para_2" type="textarea" class="form-control @error('email') is-invalid @enderror" name="para_2" value=""  autocomplete="email" autofocus>{{ $data->para_2 }}</textarea>
 
                             </div>
                         </div>
@@ -101,7 +120,7 @@
                             <label for="meta_title" class="col-md-4 col-form-label text-md-right">{{ __('Meta Title') }}</label>
 
                             <div class="col-md-6">
-                                <input id="meta_title" type="text" class="form-control @error('email') is-invalid @enderror" name="meta_title" value="{{$data->meta_title}} " required autocomplete="email" autofocus>
+                                <input id="meta_title" type="text" class="form-control @error('email') is-invalid @enderror" name="meta_title" value="{{$data->meta_title}} "  autocomplete="email" autofocus>
 
                             </div>
                         </div>
@@ -109,7 +128,7 @@
                             <label for="meta_desc" class="col-md-4 col-form-label text-md-right">{{ __('Meta Description') }}</label>
 
                             <div class="col-md-6">
-                                <textarea id="meta_desc" type="textarea" class="form-control @error('email') is-invalid @enderror" name="meta_desc" value="" required autocomplete="email" autofocus>{{ $data->meta_desc }}</textarea>
+                                <textarea id="meta_desc" type="textarea" class="form-control @error('email') is-invalid @enderror" name="meta_desc" value=""  autocomplete="email" autofocus>{{ $data->meta_desc }}</textarea>
 
                             </div>
                         </div>
@@ -118,7 +137,7 @@
                             <label for="google_analytics" class="col-md-4 col-form-label text-md-right">{{ __('Google Analytics') }}</label>
 
                             <div class="col-md-6">
-                                <textarea id="google_analytics" type="textarea" class="form-control @error('email') is-invalid @enderror" name="google_analytics" value="" required autocomplete="email" autofocus>{{ $data->google_analytics }}</textarea>
+                                <textarea id="google_analytics" type="textarea" class="form-control @error('email') is-invalid @enderror" name="google_analytics" value=""  autocomplete="email" autofocus>{{ $data->google_analytics }}</textarea>
 
                             </div>
                         </div>
@@ -127,7 +146,7 @@
                             <label for="facebook_pixel" class="col-md-4 col-form-label text-md-right">{{ __('Facebook Pixel') }}</label>
 
                             <div class="col-md-6">
-                                <textarea id="facebook_pixel" type="textarea" class="form-control @error('email') is-invalid @enderror" name="facebook_pixel" value="" required autocomplete="email" autofocus>{{ $data->facebook_pixel }}</textarea>
+                                <textarea id="facebook_pixel" type="textarea" class="form-control @error('email') is-invalid @enderror" name="facebook_pixel" value="" autocomplete="email" autofocus>{{ $data->facebook_pixel }}</textarea>
 
                             </div>
                         </div>
@@ -150,29 +169,11 @@
                             </div>
                         </div>
 
-                        <!-- <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div> -->
-
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
                         <button type="submit" class="btn btn-primary">
                                     {{ __('Apply') }}
                                 </button>
-
-                                <!-- @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif -->
                             </div>
                         </div>
                     </form>
